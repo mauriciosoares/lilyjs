@@ -7,7 +7,7 @@
   'use strict';
 
   var Lily = function(name, fn) {
-    fn.call(this, new Seed());
+    fn.call(this, new root.Seed());
   };
 
   root.Lily = Lily;
@@ -45,9 +45,10 @@
     return this;
   };
 
-  Assert.prototype.toBe = function(value) {
-
-  };
-
   root.Assert = Assert;
 } (this));
+;(function(Assert) {
+  Assert.prototype.toEqual = function(value) {
+
+  };
+} (this.Assert));

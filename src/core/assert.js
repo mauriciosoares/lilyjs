@@ -11,9 +11,5 @@
     return this;
   };
 
-  Assert.prototype.toBe = function(value) {
-
-  };
-
   root.Assert = Assert;
 } (this));
