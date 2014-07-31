@@ -23,7 +23,7 @@
       this.beforeEachFn();
     }
 
-    fn();
+    fn.call(this, new root.Assert());
   };
 
   Seed.prototype.beforeEach = function(fn) {
@@ -38,4 +38,15 @@
   var Assert = function() {
 
   };
+
+  Assert.prototype.expect = function(value) {
+    this.firstValue = value;
+    return this;
+  };
+
+  Assert.prototype.toBe = function(value) {
+
+  };
+
+  root.Assert = Assert;
 } (this));

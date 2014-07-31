@@ -9,7 +9,7 @@
       this.beforeEachFn();
     }
 
-    fn();
+    fn.call(this, new root.Assert());
   };
 
   Seed.prototype.beforeEach = function(fn) {
