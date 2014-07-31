@@ -32,7 +32,9 @@ module.exports = function(grunt) {
     dist: {
       src: [
         'src/core/lily.js',
-        'src/core/seed.js'
+        'src/core/seed.js',
+        'src/core/assert.js',
+        'src/asserts/*.js'
       ],
       dest: 'dist/lily.js'
     }

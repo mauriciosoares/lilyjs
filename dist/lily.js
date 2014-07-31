@@ -13,13 +13,17 @@
   root.Lily = Lily;
 } (this));
 ;(function(root) {
+  'use strict';
   var Seed = function() {
 
   };
 
   Seed.prototype.test = function(name, fn) {
-    // this.beforeEachFn && this.beforeEachFn();
-    // fn.apply;
+    if(typeof this.beforeEachFn === 'function') {
+      this.beforeEachFn();
+    }
+
+    fn();
   };
 
   Seed.prototype.beforeEach = function(fn) {
@@ -27,4 +31,11 @@
   };
 
   root.Seed = Seed;
+} (this));
+;(function(root) {
+  'use strict';
+
+  var Assert = function() {
+
+  };
 } (this));
