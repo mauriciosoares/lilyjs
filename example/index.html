@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <script src="../dist/lily.js"></script>
+  <script>
+    Lily('First test suit', function(seed) {
+      seed.beforeEach(function() {
+        var a = true;
+      });
+
+      seed.test('should return true', function(assert) {
+        console.log(a);
+        // assert(true).toBe(true);
+      });
+    });
+  </script>
+</body>
+</html>
