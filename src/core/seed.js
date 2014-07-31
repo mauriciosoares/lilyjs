@@ -1,7 +1,7 @@
 ;(function(root) {
   'use strict';
-  var Seed = function() {
-
+  var Seed = function(lily) {
+    this.lily = lily;
   };
 
   Seed.prototype.test = function(name, fn) {

@@ -7,15 +7,28 @@
   'use strict';
 
   var Lily = function(name, fn) {
-    fn.call(this, new root.Seed());
+    if(!(this instanceof Lily)) {
+      return new Lily(name, fn);
+    }
+
+    this.name = name;
+    this.fn = fn;
+
+    this.initialize();
+  };
+
+  Lily.prototype.initialize = function() {
+    console.log('-------------- ' + this.name + ' --------------');
+    this.fn.call(this, new root.Seed(this));
   };
 
   root.Lily = Lily;
 } (this));
+
 ;(function(root) {
   'use strict';
-  var Seed = function() {
-
+  var Seed = function(lily) {
+    this.lily = lily;
   };
 
   Seed.prototype.test = function(name, fn) {
@@ -32,14 +45,15 @@
 
   root.Seed = Seed;
 } (this));
+
 ;(function(root) {
   'use strict';
 
-  var Assert = function(value) {
-    if(!(this instanceof Assert)) {
-      return new Assert(value);
-    }
+  var Assert = function() {
 
+  };
+
+  Assert.prototype.assert = function(value) {
     this.firstValue = value;
 
     return this;
@@ -47,8 +61,9 @@
 
   root.Assert = Assert;
 } (this));
+
 ;(function(Assert) {
   Assert.prototype.toEqual = function(value) {
-
+    return this.firstValue === value;
   };
 } (this.Assert));
