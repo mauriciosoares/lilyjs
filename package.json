@@ -1,0 +1,30 @@
+{
+  "name": "lilyjs",
+  "version": "0.0.0",
+  "description": "Javascript TestSuit Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msodeveloper/lilyjs.git"
+  },
+  "keywords": [
+    "javascript",
+    "testsuit",
+    "framework"
+  ],
+  "author": "Mauricio Soares de Oliveira",
+  "license": "Beerware",
+  "bugs": {
+    "url": "https://github.com/msodeveloper/lilyjs/issues"
+  },
+  "homepage": "https://github.com/msodeveloper/lilyjs",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
