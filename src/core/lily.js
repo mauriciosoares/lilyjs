@@ -13,7 +13,6 @@
   };
 
   Lily.prototype.initialize = function() {
-    console.log('-------------- ' + this.name + ' --------------');
     this.fn.call(this, new root.Seed(this));
   };
 

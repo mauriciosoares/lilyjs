@@ -5,8 +5,8 @@
 
   };
 
-  Assert.prototype.assert = function(value) {
-    this.firstValue = value;
+  Assert.prototype.assert = function(val) {
+    this.assertVal = val;
 
     return this;
   };

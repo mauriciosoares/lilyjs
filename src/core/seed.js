@@ -2,6 +2,9 @@
   'use strict';
   var Seed = function(lily) {
     this.lily = lily;
+
+    this.assertInstance = new root.Assert();
+    this.assertInstance.lily = lily;
   };
 
   Seed.prototype.test = function(name, fn) {
@@ -9,7 +12,7 @@
       this.beforeEachFn();
     }
 
-    fn.call(this, root.Assert);
+    fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
   };
 
   Seed.prototype.beforeEach = function(fn) {

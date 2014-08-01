@@ -1,4 +1,4 @@
-/** lilyjs - v0.0.0 - 2014-07-31
+/** lilyjs - v0.0.0 - 2014-08-01
 * Copyright (c) 2014 Mauricio Soares de Oliveira;
 * Licensed Beerware 
 */
@@ -18,7 +18,6 @@
   };
 
   Lily.prototype.initialize = function() {
-    console.log('-------------- ' + this.name + ' --------------');
     this.fn.call(this, new root.Seed(this));
   };
 
@@ -29,6 +28,9 @@
   'use strict';
   var Seed = function(lily) {
     this.lily = lily;
+
+    this.assertInstance = new root.Assert();
+    this.assertInstance.lily = lily;
   };
 
   Seed.prototype.test = function(name, fn) {
@@ -36,7 +38,7 @@
       this.beforeEachFn();
     }
 
-    fn.call(this, root.Assert);
+    fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
   };
 
   Seed.prototype.beforeEach = function(fn) {
@@ -53,8 +55,8 @@
 
   };
 
-  Assert.prototype.assert = function(value) {
-    this.firstValue = value;
+  Assert.prototype.assert = function(val) {
+    this.assertVal = val;
 
     return this;
   };
@@ -63,7 +65,7 @@
 } (this));
 
 ;(function(Assert) {
-  Assert.prototype.toEqual = function(value) {
-    return this.firstValue === value;
+  Assert.prototype.toEqual = function(val) {
+    return this.assertVal === val;
   };
 } (this.Assert));
