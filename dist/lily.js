@@ -65,7 +65,17 @@
 } (this));
 
 ;(function(Assert) {
+  'use strict';
+
   Assert.prototype.toEqual = function(val) {
     return this.assertVal === val;
   };
 } (this.Assert));
+
+(function(Lily) {
+  'use strict';
+
+  Lily.logger = function() {
+
+  };
+} (this.Lily));
