@@ -5,15 +5,12 @@
     var assertResult = (this.assertVal === val);
 
     if(assertResult) {
-      this.lily.configs.status.push({
-        name: this.testName
-      });
-    } else {
-      this.lily.configs.status.push({
-        name: this.testName,
-        errorMessage: 'Is not equal'
-      });
+      this.reports.success += 1;
+      return;
     }
+
+    this.reports.failures += 1;
+    this.reports.failureMessages.push('Erro');
 
     return assertResult;
   };

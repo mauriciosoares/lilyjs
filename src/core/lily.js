@@ -8,8 +8,7 @@
 
     this.configs = {
       name: name,
-      fn: fn,
-      status: []
+      fn: fn
     };
 
     this.initialize();
@@ -18,8 +17,7 @@
   Lily.prototype.initialize = function() {
     Lily.logger(this.configs.name, 'title');
 
-    this.configs.fn.call(this, new root.Seed(this));
-    console.log(this.configs.status);
+    this.configs.fn.call(this, new root.Seed());
   };
 
   root.Lily = Lily;

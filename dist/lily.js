@@ -13,8 +13,7 @@
 
     this.configs = {
       name: name,
-      fn: fn,
-      status: []
+      fn: fn
     };
 
     this.initialize();
@@ -23,8 +22,7 @@
   Lily.prototype.initialize = function() {
     Lily.logger(this.configs.name, 'title');
 
-    this.configs.fn.call(this, new root.Seed(this));
-    console.log(this.configs.status);
+    this.configs.fn.call(this, new root.Seed());
   };
 
   root.Lily = Lily;
@@ -32,25 +30,30 @@
 
 ;(function(root) {
   'use strict';
-  var Seed = function(lily) {
-    this.lily = lily;
+  var Seed = function() {
 
-    this.assertInstance = new root.Assert();
-    this.assertInstance.lily = lily;
   };
 
   Seed.prototype.test = function(name, fn) {
-    if(typeof this.beforeEachFn === 'function') {
-      this.beforeEachFn();
+    if(typeof this.before === 'function') {
+      this.before();
     }
 
-    this.assertInstance.testName = name;
+    this.assertInstance = new root.Assert();
+
+    this.assertInstance.reports = {
+      success: 0,
+      failures: 0,
+      failureMessages: []
+    };
 
     fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
+
+    console.log(this.assertInstance.reports);
   };
 
   Seed.prototype.beforeEach = function(fn) {
-    this.beforeEachFn = fn;
+    this.before = fn;
   };
 
   root.Seed = Seed;
@@ -79,15 +82,12 @@
     var assertResult = (this.assertVal === val);
 
     if(assertResult) {
-      this.lily.configs.status.push({
-        name: this.testName
-      });
-    } else {
-      this.lily.configs.status.push({
-        name: this.testName,
-        errorMessage: 'Is not equal'
-      });
+      this.reports.success += 1;
+      return;
     }
+
+    this.reports.failures += 1;
+    this.reports.failureMessages.push('Erro');
 
     return assertResult;
   };
