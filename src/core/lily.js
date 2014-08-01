@@ -6,14 +6,22 @@
       return new Lily(name, fn);
     }
 
-    this.name = name;
-    this.fn = fn;
+    this.configs = {
+      name: name,
+      fn: fn,
+      status: {
+        success: [],
+        failure: []
+      }
+    };
 
     this.initialize();
   };
 
   Lily.prototype.initialize = function() {
-    this.fn.call(this, new root.Seed(this));
+    Lily.logger(this.configs.name, 'title');
+
+    this.configs.fn.call(this, new root.Seed(this));
   };
 
   root.Lily = Lily;

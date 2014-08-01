@@ -11,14 +11,22 @@
       return new Lily(name, fn);
     }
 
-    this.name = name;
-    this.fn = fn;
+    this.configs = {
+      name: name,
+      fn: fn,
+      status: {
+        success: [],
+        failure: []
+      }
+    };
 
     this.initialize();
   };
 
   Lily.prototype.initialize = function() {
-    this.fn.call(this, new root.Seed(this));
+    Lily.logger(this.configs.name, 'title');
+
+    this.configs.fn.call(this, new root.Seed(this));
   };
 
   root.Lily = Lily;
@@ -68,14 +76,29 @@
   'use strict';
 
   Assert.prototype.toEqual = function(val) {
+    console.log(this.lily);
     return this.assertVal === val;
   };
 } (this.Assert));
 
-(function(Lily) {
+;(function(Lily) {
   'use strict';
 
-  Lily.logger = function() {
+  Lily.logger = function(msg, status) {
+    var configs = {
+      title: {
+        bg: 'blue',
+      },
 
+      success: {
+        bg: 'green'
+      },
+
+      failure: {
+        bg: 'red'
+      }
+    };
+
+    console.log('%c' + msg, 'background-color: ' + configs[status].bg + '; font-weight: bold; color: white; padding: 2px;');
   };
 } (this.Lily));
