@@ -12,6 +12,8 @@
       this.beforeEachFn();
     }
 
+    this.assertInstance.testName = name;
+
     fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
   };
 

@@ -1,8 +1,20 @@
-;(function(Assert) {
+;(function(Lily, Assert) {
   'use strict';
 
   Assert.prototype.toEqual = function(val) {
-    console.log(this.lily);
-    return this.assertVal === val;
+    var assertResult = (this.assertVal === val);
+
+    if(assertResult) {
+      this.lily.configs.status.push({
+        name: this.testName
+      });
+    } else {
+      this.lily.configs.status.push({
+        name: this.testName,
+        errorMessage: 'Is not equal'
+      });
+    }
+
+    return assertResult;
   };
-} (this.Assert));
+} (this.Lily, this.Assert));
