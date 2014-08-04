@@ -3,8 +3,12 @@
 
   Lily.logger = function(msg, status) {
     var configs = {
-      title: {
+      lily: {
         bg: 'blue',
+      },
+
+      seed: {
+        bg: 'purple',
       },
 
       success: {

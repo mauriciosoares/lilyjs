@@ -15,8 +15,8 @@
 
     fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
 
-    console.log(name);
-    console.log(this.assertInstance.reports);
+    // Lily.logger(name, 'seed');
+    console.log(root.Lily.report(this.assertInstance.reports));
   };
 
   Seed.prototype.beforeEach = function(fn) {

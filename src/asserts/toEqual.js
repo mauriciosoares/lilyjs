@@ -6,15 +6,14 @@
 
     if(assertResult) {
       this.reports.push({
-        hasPassed: true,
-        message: 'Has passed'
+        hasPassed: true
       });
       return;
     }
 
     this.reports.push({
       hasPassed: false,
-      message: 'Has not passed'
+      message: 'Expect ' + this.assertVal + ' to equal ' + val
     });
 
     return assertResult;

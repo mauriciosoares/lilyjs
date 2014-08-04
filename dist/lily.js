@@ -20,7 +20,7 @@
   };
 
   Lily.prototype.initialize = function() {
-    Lily.logger(this.configs.name, 'title');
+    Lily.logger(this.configs.name, 'lily');
 
     this.configs.fn.call(this, new root.Seed());
   };
@@ -45,8 +45,8 @@
 
     fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
 
-    console.log(name);
-    console.log(this.assertInstance.reports);
+    // Lily.logger(name, 'seed');
+    console.log(root.Lily.report(this.assertInstance.reports));
   };
 
   Seed.prototype.beforeEach = function(fn) {
@@ -80,15 +80,14 @@
 
     if(assertResult) {
       this.reports.push({
-        hasPassed: true,
-        message: 'Has passed'
+        hasPassed: true
       });
       return;
     }
 
     this.reports.push({
       hasPassed: false,
-      message: 'Has not passed'
+      message: 'Expect ' + this.assertVal + ' to equal ' + val
     });
 
     return assertResult;
@@ -100,8 +99,12 @@
 
   Lily.logger = function(msg, status) {
     var configs = {
-      title: {
+      lily: {
         bg: 'blue',
+      },
+
+      seed: {
+        bg: 'purple',
       },
 
       success: {
@@ -114,5 +117,22 @@
     };
 
     console.log('%c' + msg, 'background-color: ' + configs[status].bg + '; font-weight: bold; color: white; padding: 2px;');
+  };
+} (this.Lily));
+
+;(function(Lily) {
+  'use strict';
+
+  Lily.report = function(reports) {
+    var reportStatus = true;
+    reports.forEach(function(assert) {
+      if(!assert.hasPassed) {
+        Lily.logger(assert.message, 'failure');
+        reportStatus = false;
+        return false;
+      }
+    });
+
+    return true;
   };
 } (this.Lily));

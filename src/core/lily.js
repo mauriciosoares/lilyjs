@@ -15,7 +15,7 @@
   };
 
   Lily.prototype.initialize = function() {
-    Lily.logger(this.configs.name, 'title');
+    Lily.logger(this.configs.name, 'lily');
 
     this.configs.fn.call(this, new root.Seed());
   };
