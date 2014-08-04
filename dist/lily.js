@@ -1,4 +1,4 @@
-/** lilyjs - v0.0.0 - 2014-08-01
+/** lilyjs - v0.0.0 - 2014-08-04
 * Copyright (c) 2014 Mauricio Soares de Oliveira;
 * Licensed Beerware 
 */
@@ -41,14 +41,11 @@
 
     this.assertInstance = new root.Assert();
 
-    this.assertInstance.reports = {
-      success: 0,
-      failures: 0,
-      failureMessages: []
-    };
+    this.assertInstance.reports = [];
 
     fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
 
+    console.log(name);
     console.log(this.assertInstance.reports);
   };
 
@@ -82,12 +79,17 @@
     var assertResult = (this.assertVal === val);
 
     if(assertResult) {
-      this.reports.success += 1;
+      this.reports.push({
+        hasPassed: true,
+        message: 'Has passed'
+      });
       return;
     }
 
-    this.reports.failures += 1;
-    this.reports.failureMessages.push('Erro');
+    this.reports.push({
+      hasPassed: false,
+      message: 'Has not passed'
+    });
 
     return assertResult;
   };

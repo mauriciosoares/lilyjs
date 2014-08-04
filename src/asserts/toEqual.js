@@ -5,12 +5,17 @@
     var assertResult = (this.assertVal === val);
 
     if(assertResult) {
-      this.reports.success += 1;
+      this.reports.push({
+        hasPassed: true,
+        message: 'Has passed'
+      });
       return;
     }
 
-    this.reports.failures += 1;
-    this.reports.failureMessages.push('Erro');
+    this.reports.push({
+      hasPassed: false,
+      message: 'Has not passed'
+    });
 
     return assertResult;
   };

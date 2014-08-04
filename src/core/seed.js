@@ -11,14 +11,11 @@
 
     this.assertInstance = new root.Assert();
 
-    this.assertInstance.reports = {
-      success: 0,
-      failures: 0,
-      failureMessages: []
-    };
+    this.assertInstance.reports = [];
 
     fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
 
+    console.log(name);
     console.log(this.assertInstance.reports);
   };
 
