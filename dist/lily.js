@@ -124,7 +124,7 @@
 
       errorMessage: {
         bg: 'red',
-        prepend: '-----> '
+        prepend: '----> '
       }
     };
 
