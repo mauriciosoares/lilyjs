@@ -5,21 +5,25 @@
     var configs = {
       lily: {
         bg: 'blue',
+        prepend: '-> '
       },
 
       seed: {
         bg: 'purple',
+        prepend: '--> '
       },
 
       success: {
-        bg: 'green'
+        bg: 'green',
+        prepend: '---> ✓ '
       },
 
       failure: {
-        bg: 'red'
+        bg: 'red',
+        prepend: '---> ✘ '
       }
     };
 
-    console.log('%c' + msg, 'background-color: ' + configs[status].bg + '; font-weight: bold; color: white; padding: 2px;');
+    console.log('%c' + configs[status].prepend + msg, 'background-color: ' + configs[status].bg + '; font-weight: bold; color: white; padding: 2px;');
   };
 } (this.Lily));

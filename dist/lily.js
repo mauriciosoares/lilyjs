@@ -1,4 +1,4 @@
-/** lilyjs - v0.0.0 - 2014-08-04
+/** lilyjs - v0.0.0 - 2014-08-06
 * Copyright (c) 2014 Mauricio Soares de Oliveira;
 * Licensed Beerware 
 */
@@ -45,8 +45,8 @@
 
     fn.call(this, this.assertInstance.assert.bind(this.assertInstance));
 
-    // Lily.logger(name, 'seed');
-    console.log(root.Lily.report(this.assertInstance.reports));
+    Lily.logger(name, 'seed');
+    root.Lily.report(this.assertInstance.reports);
   };
 
   Seed.prototype.beforeEach = function(fn) {
@@ -101,22 +101,26 @@
     var configs = {
       lily: {
         bg: 'blue',
+        prepend: '-> '
       },
 
       seed: {
         bg: 'purple',
+        prepend: '--> '
       },
 
       success: {
-        bg: 'green'
+        bg: 'green',
+        prepend: '---> ✓ '
       },
 
       failure: {
-        bg: 'red'
+        bg: 'red',
+        prepend: '---> ✘ '
       }
     };
 
-    console.log('%c' + msg, 'background-color: ' + configs[status].bg + '; font-weight: bold; color: white; padding: 2px;');
+    console.log('%c' + configs[status].prepend + msg, 'background-color: ' + configs[status].bg + '; font-weight: bold; color: white; padding: 2px;');
   };
 } (this.Lily));
 
@@ -133,6 +137,6 @@
       }
     });
 
-    return true;
+    return reportStatus;
   };
 } (this.Lily));

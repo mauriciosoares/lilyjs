@@ -11,6 +11,6 @@
       }
     });
 
-    return true;
+    return reportStatus;
   };
 } (this.Lily));
