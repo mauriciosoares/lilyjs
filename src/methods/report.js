@@ -2,12 +2,13 @@
   'use strict';
 
   Lily.report = function(reports) {
-    var reportStatus = true;
+    var reportStatus = {
+      passed: true
+    };
     reports.forEach(function(assert) {
       if(!assert.hasPassed) {
-        Lily.logger(assert.message, 'failure');
-        reportStatus = false;
-        return false;
+        reportStatus.passed = false;
+        reportStatus.errorMessage = assert.message;
       }
     });
 

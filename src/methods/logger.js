@@ -8,19 +8,19 @@
         prepend: '-> '
       },
 
-      seed: {
-        bg: 'purple',
-        prepend: '--> '
-      },
-
       success: {
         bg: 'green',
-        prepend: '---> ✓ '
+        prepend: '--> ✓ '
       },
 
       failure: {
         bg: 'red',
-        prepend: '---> ✘ '
+        prepend: '--> ✘ '
+      },
+
+      errorMessage: {
+        bg: 'red',
+        prepend: '-----> '
       }
     };
 
